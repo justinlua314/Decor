@@ -40,7 +40,7 @@ function decor.load()
 	for _,file in pairs(love.filesystem.getDirectoryItems("libraries/decor")) do
 		if love.filesystem.getInfo("libraries/decor/" .. file).type == "directory" then
 			for _,tool in pairs(love.filesystem.getDirectoryItems("libraries/decor/" .. file)) do
-				if tool:sub(tool:len() - 3) == ".lua" and tool ~= "canvas.lua" then
+				if tool:sub(-4) == ".lua" and tool ~= "canvas.lua" then
 					require("libraries/decor/" .. file .. "/" .. tool:sub(1, -5))
 				end
 			end
