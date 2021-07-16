@@ -11,3 +11,7 @@ decor.keypressed(key)
 
 To load a painting, simply call
 decor.frame(paintingName)
+
+
+To make screenshots of a painting, call this function
+shutter.snap(amount, folderName, screenshotRate)
