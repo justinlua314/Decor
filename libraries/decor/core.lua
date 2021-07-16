@@ -78,6 +78,10 @@ function decor.keypressed(key)
 			post.active = not post.active
 		end
 	end
+
+	if key == "r" then
+		decor.frame(decor.currentPainting)
+	end
 end
 
 function decor.refresh(painting)
