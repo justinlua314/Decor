@@ -52,15 +52,13 @@ end
 function shutter.update(dt)
 	if shutter.count == 0 then return end
 
-	if shutter.rate > 0 then
-		shutter.time = (shutter.time - dt)
-	end
-
+	shutter.time = (shutter.time - dt)
+	
 	if shutter.time <= 0 then
 		shutter.screenshot()
 		shutter.count = (shutter.count - 1)
 
-		if shutter.count > 0 and shutter.rate > 0 then
+		if shutter.count > 0 then
 			shutter.time = (shutter.time + shutter.rate)
 		else
 			shutter.time = 0
