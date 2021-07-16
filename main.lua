@@ -10,6 +10,7 @@ end
 
 function love.update(dt)
 	decor.update(dt)
+	shutter.update(dt)
 end
 
 function love.draw()

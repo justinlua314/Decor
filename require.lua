@@ -2,7 +2,8 @@
 
 local libs = {
 	"global",
-	"decor/core" -- global
+	"decor/core",
+	"shutter"		-- decor/core
 }
 
 for _,lib in pairs(libs) do
