@@ -5,8 +5,7 @@ decor = {
 	render = love.graphics.newCanvas(),
 	posts = {},
 	time = 0,
-	edit = false,
-	updateCheck = nil
+	edit = false
 }
 
 function decor.editing(bool)
