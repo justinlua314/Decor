@@ -5,7 +5,8 @@ decor = {
 	render = love.graphics.newCanvas(),
 	posts = {},
 	time = 0,
-	edit = false
+	edit = false,
+	updateCheck = nil
 }
 
 function decor.editing(bool)
@@ -28,6 +29,7 @@ function decor.frame(painting)
 			print("Error2: " .. tostring(result))
 		else
 			decor.modtime = love.filesystem.getInfo("paintings/" .. painting .. ".lua").modtime
+			decor.currentPainting = painting
 			love.graphics.setCanvas(decor.render)
 			love.graphics.clear()
 			chunk()
