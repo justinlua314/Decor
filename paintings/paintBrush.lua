@@ -1,12 +1,12 @@
 local function circleThing()
 	if not love.mouse.isDown(1) then return end
-	love.graphics.setCanvas(decor.render)
+	decor.editing(true)
 	decor.circle({
 		color = global.color.random(),
 		x = love.mouse.getX(), y = love.mouse.getY(),
 		radius = 20
 	})
-	love.graphics.setCanvas()
+	decor.editing(false)
 end
 
 decor.postProcess({
@@ -15,8 +15,9 @@ decor.postProcess({
 
 local m = require("posts/melt")
 
-decor.postProcess({ -- Inactive melt, must be activated by something
+decor.postProcess({
 	id = "melt",
 	func = m,
-	active = false
+	active = false,
+	key = "space"
 })
