@@ -61,6 +61,7 @@ function global.math.cossin(x, y, dx, dy)
 end
 
 function global.math.pursue(x, dx, change)
+	if x == dx then return x end
 	if x > dx then x = (x - change) else x = (x + change) end
 
 	if x > (dx - global.math.pursueRoundValue) and x < (dx + global.math.pursueRoundValue) then
@@ -70,8 +71,29 @@ function global.math.pursue(x, dx, change)
 	return x
 end
 
-function global.math.boundryCheck(x, y, dx1, dy1, dx2, dy2)
-	return (x >= dx1 and x <= dx2 and y >= dy1 and y <= dy2)
+function global.math.rectanglesOverlap(x, y, w, h, tx, ty, tw, th)
+	local result = {
+		x = false,
+		y = false
+	}
+
+	if x < tx then
+		result.x = ((x + w) >= tx)
+	else
+		result.x = ((tx + tw) >= x)
+	end
+
+	if y < ty then
+		result.y = ((y + h) >= ty)
+	else
+		result.y = ((ty + th) >= y)
+	end
+
+	return (result.x and result.y)
+end
+
+function global.math.circlesOverlap(x, y, r, tx, ty, tr)
+	return ((global.math.distance(x, y, tx, ty) - r) <= tr)
 end
 
 function global.math.distance(x, y, tx, ty)
@@ -300,7 +322,7 @@ function global.color.random(single, stream)
 end
 
 function global.color.shift(col, target, speed)
-	local finished
+	local finished = false
 	speed = speed or 0.001
 
 	if col.r then
@@ -335,30 +357,7 @@ function global.color.shift(col, target, speed)
 	global.math.nearlyEqual(col[2], target[2], speed) and
 	global.math.nearlyEqual(col[3], target[3], speed) then
 		finished = true
-	else
-		finished = false
 	end
 
 	return col, finished
-end
-
-function global.color.rainbow(n, stream)
-	n = (n % 6)
-
-	if n == 0 then n = 1 end
-
-	local rainbow = {
-		{1, 0.2, 0.2, 1},
-		{1, 0.6, 0.2, 1},
-		{1, 1, 0.2, 1},
-		{0.2, 1, 0.2, 1},
-		{0.2, 0.6, 1, 1},
-		{0.6, 0.2, 1, 1}
-	}
-
-	if stream then
-		return rainbow[n][1], rainbow[n][2], rainbow[n][3], 1
-	else
-		return rainbow[n]
-	end
 end
