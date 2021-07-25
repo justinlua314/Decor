@@ -15,17 +15,17 @@ function decor.editing(bool)
 end
 
 function decor.frame(painting)
-	local ok, chunk, result
+	local ok, chunk
 
 	ok, chunk = pcall(love.filesystem.load, ("paintings/" .. painting .. ".lua"))
 
 	if not ok then
 		print("Error1: " .. tostring(chunk))
 	else
-		ok, result = pcall(chunk)
+		ok = pcall(chunk)
 
 		if not ok then
-			print("Error2: " .. tostring(result))
+			print("Error2: Unknown painting " .. painting)
 		else
 			decor.modtime = love.filesystem.getInfo("paintings/" .. painting .. ".lua").modtime
 			decor.currentPainting = painting
