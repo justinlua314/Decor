@@ -209,6 +209,14 @@ function global.math.findNearest(point, tab, amount)
 	end
 end
 
+-- Useful for plotting points around a center
+function global.math.plotUnitCirclePoint(cx, cy, radius, angle)
+	local x, y
+	x = (radius * math.cos(angle) + cx)
+	y = (radius * math.sin(angle) + cy)
+	return x, y
+end
+
 function global.math.nearlyEqual(x, y, range)
 	if (x >= y and (x - y) <= range) or (x < y and (y - x) <= range) then
 		return true
