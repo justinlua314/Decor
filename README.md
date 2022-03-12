@@ -15,3 +15,7 @@ decor.frame(paintingName)
 
 To make screenshots of a painting, call this function
 shutter.snap(amount, folderName, screenshotRate)
+
+Demonstration
+
+https://youtu.be/3SGZifPjgmw
